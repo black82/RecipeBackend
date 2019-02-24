@@ -1,4 +1,0 @@
-{"id\":\1,\"title\":\"title","announce\":\"String announce","publicationDate\":\"2019-01-28T11:48:48.214+0000","author\":{\"id\":\1,\"nameaAuthor\":\"fgd\"},\"ingredients\":[{\"id\":\1,\"nameIngredient\":\"vfd","descriptions\":\"gf\"}],\"instructions\":[{\"id\":\1,\"stepTitle\":\"ds","stepDescription\":\"fd\"}],\"tags\":[{\"id\":\1,\"nameTaxonomy\":\"ad\"}],\"comment\":{\"id\":\1,\"comment\":\"ds\"},\"prepTimeMinute\":23,\"cookingTime\":23,\"rate\":{\"id\":1,\"rate"\:"sdf"}));
-
-
-{"id":1,"title":"title","announce":"String announce","publicationDate":1548547807664,"author":{"id":1,"nameaAuthor":"fgd"},"ingredients":[{"id":1,"nameIngredient":"vfd","descriptions":"gf"}],"instructions":[{"id":1,"stepTitle":"ds","stepDescription":"fd"}],"tags":[{"id":1,"nameTaxonomy":"ad"}],"comment":{"id":1,"comment":"ds"},"prepTimeMinute":23,"cookingTime":23,"rate":{"id":1,"rate":"sdf"}}
