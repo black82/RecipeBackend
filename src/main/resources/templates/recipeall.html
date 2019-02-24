@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Recipe All</title>
+    <script crossorigin="anonymous"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
+
+</head>
+<body style="background: ivory">
+<h1 style="text-align: center;color: darkblue;">All Recipe</h1>
+<a class="badge badge-primary" href="index"> ___Home___   </a>
+<br/>
+<div>
+
+    <tr th:each="RecipeWebOutput: ${recipeall}">
+        <div class="container px-lg-5" style="align-content: center; ">
+            <div class="row mx-lg-n5">
+                <div class="col py-3 px-lg-5 border bg-light">
+                    <img class="img-thumbnail" height="300" th:src="${RecipeWebOutput.image[0].patch}" width="200">
+                </div>
+                <div class="col py-3 px-lg-5 border bg-light">
+                    <img class="img-thumbnail" height="300" th:src="${RecipeWebOutput.image[1].patch}" width="200">
+                </div>
+                <div class="col py-3 px-lg-5 border bg-light">
+                    <img class="img-thumbnail" height="300" th:src="${RecipeWebOutput.image[2].patch}" width="200">
+                </div>
+            </div>
+        </div>
+        <div style="align-content: center;"><a class="badge badge-primary"
+                                               th:href="@{'recipeid/'+${RecipeWebOutput.id}}" style="align-content: center">Select Recipe</a></div>
+        <div class="container px-lg-5" style="align-content: center; ">
+            <div class="row mx-lg-n5">
+                <div class="col py-3 px-lg-5 border bg-light">
+
+                    <div>
+                        <p style="text-align: center;color: #35acdf">ID Recipe :</p>
+                        <a th:href="@{'recipeid/'+${RecipeWebOutput.id}}">
+                            <td th:utext="${RecipeWebOutput.id}"></td>
+                        </a></div>
+                    <div>
+                    </div>
+                    <div><p style="color: #35acdf;">Title:</p>
+                        <a th:href="@{'recipebytitle/'+${RecipeWebOutput.title}}">
+                            <td th:utext="${RecipeWebOutput.title}"></td>
+                        </a></div>
+                    <div>
+
+                        <p style="color: #35acdf;"> Announce:</p>
+                        <td th:utext="${RecipeWebOutput.announce}"></td>
+                    </div>
+                    <div>
+                        <p style="color: #35acdf" ;>Author:</p>
+                        <a th:href="@{'/recipe/'+${RecipeWebOutput.author.name}}">
+                            <td th:utext="${RecipeWebOutput.author.name}"></td>
+                        </a></div>
+                    <div>
+                        <p style="color: #35acdf;">Cooking Time:</p>
+                        <td th:utext="${RecipeWebOutput.cookingTime}"></td>
+                    </div>
+                    <div>
+                        <p style="color: #35acdf;">Taxonomy :</p>
+                        <ul th:each="TaxonomyWeb :${RecipeWebOutput.tags}">
+
+                            <li th:text="${TaxonomyWeb.nameTaxonomy}"></li>
+                            </br>
+
+                        </ul>
+                        <p style="color: #35acdf;">Preparation Time :</p>
+                        <td th:utext="${RecipeWebOutput.prepTimeMinute}"></td>
+                    </div>
+
+                </div>
+                <div class="col py-3 px-lg-5 border bg-light">
+                    <br/>
+                    <div>
+                        <p style="color: #35acdf;">Ingredient :</p>
+                        <ul th:each="IngredientWeb :${RecipeWebOutput.ingredients}">
+                            <a th:href="@{'recipebyingredient/'+${IngredientWeb.nameIngredient}}">
+                                <li style="size: auto" th:text="${IngredientWeb.nameIngredient}">Ingredient</li>
+                            </a>
+                        </ul>
+
+                    </div>
+                    <a class="badge badge-primary" th:href="@{'/recipedit/'+${RecipeWebOutput.id}}">UbdateRecipe</a>
+                    <a class="badge badge-primary" th:href="@{'/deletebyid/'+${RecipeWebOutput.id}}" methods="Get">DeleteRecipe</a>
+                </div>
+
+            </div>
+        </div>
+
+
+    </tr>
+    <br/>
+    <br/>
+</div>
+</body>
+</html>

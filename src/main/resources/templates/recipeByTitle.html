@@ -1,0 +1,147 @@
+<!DOCTYPE HTML>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipe</title>
+    <script crossorigin="anonymous"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<h1 style="text-align: center;color: crimson">Recipe</h1>
+<br/>
+<a class="badge badge-primary" href="/index" style="color: darkslateblue">Home</a>
+<br/>
+<div>
+
+    <form th:action="@{/addcomment}" th:each="RecipeWebOutput : ${recipeByAuthor}">
+
+        <br/>
+        <br/>
+        <div class="container px-lg-5" style="align-content: center; ">
+            <div class="row mx-lg-n5">
+                <div class="col py-3 px-lg-5 border bg-light">
+
+                    <img class="img-thumbnail" height="300" th:src="${RecipeWebOutput.image[0].patch}" width="300">
+                </div>
+                <div class="col py-3 px-lg-5 border bg-light">
+                    <img class="img-thumbnail" height="300" th:src="${RecipeWebOutput.image[1].patch}" width="300">
+                </div>
+                <div class="col py-3 px-lg-5 border bg-light">
+                    <img class="img-thumbnail" height="300" th:src="${RecipeWebOutput.image[2].patch}" width="300">
+                </div>
+            </div>
+        </div>
+        <br/>
+        <br/>
+        <div class="container px-lg-5" style="align-content: center; ">
+            <div class="row mx-lg-n5">
+                <div class="col py-3 px-lg-5 border bg-light">
+
+                    <div><p style="text-align: center;color: #35acdf;">ID Recipe:</p>
+                        <td th:utext="${RecipeWebOutput.id}"></td>
+                    </div>
+
+                    <p style="text-align: center;color: #35acdf;"> Title</p>
+                    <div class="text-input-context-menu">
+                        <td th:utext="${RecipeWebOutput.title}"></td>
+                    </div>
+                    <div>
+                        <p style="text-align: center;color: #35acdf;">Publication Date :</p>
+
+                        <!--/*@thymesVar id="publicationDate" type="de.recipe.web.RecipeWebOutput"*/-->
+                        <td style="color: coral"
+                            th:utext="${#dates.format(RecipeWebOutput.publicationDate, 'dd-MMMM-yyyy')}"></td>
+                    </div>
+                    <div>
+                        <p style="text-align: center;color: #35acdf;">Anounce</p>
+                        <td th:utext="${RecipeWebOutput.announce}"></td>
+                    </div>
+                    <div>
+                        <p style="text-align: center;color: #35acdf;"> Author : </p>
+                        <td th:utext="${RecipeWebOutput.author.name}"></td>
+                    </div>
+                    <div>
+                        <p style="text-align: center;color: #35acdf;"> Cooking Time :</p>
+                        <td th:utext="${RecipeWebOutput.cookingTime}"></td>
+                    </div>
+                    <div>
+                        <p style="text-align: center;color: #35acdf;">Recipe Step:</p>
+                        <ul th:each="RecepiStepWeb :${RecipeWebOutput.instructions}">
+                            <!--/*@thymesVar id="RecepiStepWeb" type="de.recipe.web.RecepiStepWeb"*/-->
+                            <li th:utext="${RecepiStepWeb.stepDescription}"></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p style="text-align: center;color: #35acdf;">Preparation Time:</p>
+                        <td th:utext="${RecipeWebOutput.prepTimeMinute}"></td>
+                    </div>
+
+                    <div>
+                        <p style="text-align: center;color: #35acdf;">Rate Name:</p>
+                        <!--/*@thymesVar id="rate" type="de.recipe.web.RateWeb"*/-->
+                        <td th:utext="*{RecipeWebOutput.rate.rateName}"></td>
+                    </div>
+                    <div>
+                        <p style="text-align: center;color: #35acdf;">Name Taxonomy:</p>
+                        <ul th:each="TaxonomyWeb :${RecipeWebOutput.tags}">
+
+                            <!--/*@thymesVar id="TaxonomyWeb" type="de.recipe.web.TaxonomyWeb"*/-->
+                            <td th:utext="${TaxonomyWeb.nameTaxonomy}"></td>
+                        </ul>
+                    </div>
+                    <div>
+
+
+                        <p style="text-align: center;color: #35acdf;">Comment:</p>
+                        <li th:utext="${RecipeWebOutput.comment}"></li>
+                        <a class="badge badge-primary" methods="post"
+                           th:href="@{'/addcomment/'+${RecipeWebOutput.id}}">Add Comment</a>
+                    </div>
+
+                </div>
+
+                <div class="col py-3 px-lg-5 border bg-light">
+                    <br/>
+                    <div><p style="text-align: center;color: #35acdf;">Ingredients Name:</p>
+                        <ul th:each="IngredientWeb :${RecipeWebOutput.ingredients}">
+                            <p style="text-align: center;color: #35acdf;">Ingredient</p>
+                            <!--/*@thymesVar id="IngredientWeb" type="de.recipe.web.IngredientWeb"*/-->
+                            <li style="size: auto" th:text="${IngredientWeb.nameIngredient}"></li>
+                            <p style="text-align: center;color: #35acdf;">Ingredient Descriptions</p>
+                            <li style="size: auto" th:text="${IngredientWeb.descriptions}"></li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container px-lg-5" style="align-content: center; ">
+            <div class="row mx-lg-n5">
+                <div class="col py-3 px-lg-5 border bg-light">
+                    <div class="ytplayer">
+                        <p style="text-align: center;color: #35acdf;">Video</p>
+                        <iframe class="embed-responsive-item" height="500"
+                                th:src="${RecipeWebOutput.video[0].patch}" width="1000"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+
+</div>
+</body>
+</html>

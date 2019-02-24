@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html lang="en"
+
+      xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>RecipeUbdate</title>
+    <script crossorigin="anonymous"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
+
+</head>
+<body>
+<h1>Search By Id</h1>
+<a href="index">Home</a>
+<br/>
+<div>
+
+
+    <!--/*@thymesVar id="recipeWebOutput" type="de.recipe.web.RecipeWebOutput"*/-->
+    <form action="ubdaterecipe.html" modelAttribute="recipe"
+          th:action="@{/recipedit/}" th:method="PUT" th:RecipeWebOutput="${ubdate}" th:type="recipe">
+        <div>
+            <input class="form-control input-lg" th:field="*{ubdate.id}" type="text"/></div>
+        <br/>
+        Title Recipe:
+        <div>
+        <input class="form-control input-lg" th:field="*{ubdate.title}" type="text"/></div>
+        <br/>
+        Anonce:
+        <div><input class="form-control input-lg" th:field="*{ubdate.announce}" type="text"/></div>
+        <br/>
+        Author:
+        <div>
+        <input class="form-control input-lg" th:field="*{ubdate.author.name}" type="text"/></div>
+        <br/>
+        Ingredient Name:
+        <div>
+            <input class="form-control input-lg" th:field="*{ubdate.ingredients[0].nameIngredient}" type="text"/>
+        </div>
+
+        <p>Ingredient Description:</p>
+        <div><input class="form-control input-lg" th:field="*{ubdate.ingredients[0].descriptions}" type="text"/>
+        </div>
+        <br/>
+        Instruction stepTitle:
+        <div>
+            <input class="form-control input-lg" th:field="*{ubdate.instructions[0].stepTitle}" type="text"/></div>
+        <br/>
+        Instruction stepDescription:
+        <div><input class="form-control input-lg" th:field="*{ubdate.instructions[0].stepDescription}"
+                    type="text"/></div>
+        <br/>
+        Instruction nameTaxonomy:
+        <div><input class="form-control input-lg" th:field="*{ubdate.tags[0].nameTaxonomy}" type="text"/></div>
+        <br/>
+        Instruction prepTimeMinute:
+        <div><input class="form-control input-lg" th:field="*{ubdate.prepTimeMinute}" type="text"/></div>
+        <br/>
+        Instruction cookingTime:
+        <div><input class="form-control input-lg" th:field="*{ubdate.cookingTime}" type="text"/></div>
+        <br/>
+        Instruction rateName:
+        <div><input class="form-control input-lg" th:field="*{ubdate.rate.rateName}" type="text"/></div>
+        <br/>
+        Phot Recipe 1:
+        <div>
+
+            <input class="form-control input-lg" th:field="*{ubdate.image[0].patch}" type="text"/>
+
+        </div>
+        Phot Recipe 2:
+        <div>
+
+            <input class="form-control input-lg" th:field="*{ubdate.image[1].patch}" type="text"/>
+
+        </div>
+        Phot Recipe 3:
+        <div>
+
+            <input class="form-control input-lg" th:field="*{ubdate.image[2].patch}" type="text"/>
+
+        </div>
+        Video Instruction Recipe 1:
+        <div>
+            <input class="form-control input-lg" th:field="*{ubdate.video[0].patch}" type="text"/>
+
+        </div>
+
+        <br/>
+        <div class="btn btn-primary btn-lg"><input class="btn btn-primary btn-lg" type="submit" value="UbdateRecipe"/>
+        </div>
+    </form>
+</div>
+</body>
+</html>
+

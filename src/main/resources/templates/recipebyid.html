@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Searc by Id</title>
+</head>
+<body>
+<div style="text-align: center">Search</div>
+
+
+<form th:object="${id}" th:action ="@{/recipetitle/}" method="post">
+        <input  th:field="${id.title}" type="text" />
+        <button type="submit">SearchByAuthor</button>
+
+</form>
+<br/>
+<br/>
+<form th:action="@{/recipe/}" th:object="${id}" method="post">
+    <input  th:field="${id.id}" type="number"/>
+    <button type="submit">SearchById</button>
+</form>
+
+</body>
+</html>
